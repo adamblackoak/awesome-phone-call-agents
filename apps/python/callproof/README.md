@@ -64,7 +64,7 @@ or in PowerShell:
 $env:CALLE_API_KEY="..."
 ```
 
-The live UI requires an operator-supplied phone number plus region and locale. Only use a number you are authorized to contact and a region/language combination currently supported by CALL-E.
+The live UI requires an operator-supplied E.164 phone number plus region and locale. Only use a number you are authorized to contact and a region/language combination currently supported by CALL-E. Example displays use masked phone placeholders rather than real personal numbers.
 
 A live verification creates a real outbound phone call and may consume CALL-E quota or billable usage. Review the claim, contact, region and locale before dispatch.
 
@@ -125,7 +125,9 @@ This is intentional: successful contact is not automatically evidence for the cl
 
 ## Safety boundaries
 
+- Live calls require explicit operator action; there are no hidden or recurring schedules.
 - Only call numbers the operator is authorized to contact.
+- Credentials remain server-side in `CALLE_API_KEY` and are never shown in the browser UI or fixtures.
 - A call connecting is never treated as evidence that the claim is true.
 - Non-authoritative, ambiguous, failed or insufficient outcomes resolve to `UNRESOLVED`.
 - Material qualifiers are surfaced rather than silently flattened into a yes/no result.
